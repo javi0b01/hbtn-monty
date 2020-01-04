@@ -31,5 +31,5 @@ int main(int argc, char **argv)
 		split(ready.buffer, &stack, line_number);
 	}
 	freedom(stack);
-	exit (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
