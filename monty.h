@@ -50,9 +50,10 @@ typedef struct prepare_e
 /* global variable */
 extern prepare_t ready;
 /* prototypes */
-void get_opcode(stack_t **stack, unsigned int line_number, char *name);
-void freedom(stack_t *stack);
-void split(char *buffer, stack_t **stack, unsigned int line_number);
+void _get_opcode(stack_t **stack, unsigned int line_number, char *name);
+void _freedom(stack_t *stack);
+void _split(char *buffer, stack_t **stack, unsigned int line_number);
+int _isdigit(int c);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */

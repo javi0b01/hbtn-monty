@@ -28,9 +28,9 @@ int main(int argc, char **argv)
 	while ((read = getline(&ready.buffer, &length, ready.file)) != EOF)
 	{
 		line_number++;
-		split(ready.buffer, &stack, line_number);
+		_split(ready.buffer, &stack, line_number);
 	}
-	freedom(stack);
+	_freedom(stack);
 	exit(EXIT_SUCCESS);
 	return  (0);
 }
