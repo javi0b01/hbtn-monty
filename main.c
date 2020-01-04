@@ -8,7 +8,7 @@ prepare_t ready = {NULL, NULL, NULL};
  */
 int main(int argc, char **argv)
 {
-	size_t len = 32;
+	size_t length = 32;
 	ssize_t read;
 	stack_t *stack;
 	unsigned int line_number;
@@ -16,20 +16,21 @@ int main(int argc, char **argv)
 	stack = NULL;
 	if (argc != 2)
 	{
-		write(STDERR_FILENO, "USAGE: monty file\n", 18);
+		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	ready.file = fopen(argv[1], "r");
 	if (!ready.file)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		dprintf(2, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&ready.buffer, &len, ready.file)) != EOF)
+	while ((read = getline(&ready.buffer, &length, ready.file)) != EOF)
 	{
 		line_number++;
 		split(ready.buffer, &stack, line_number);
 	}
 	freedom(stack);
 	exit(EXIT_SUCCESS);
+	return  (0);
 }
