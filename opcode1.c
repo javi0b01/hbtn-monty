@@ -115,7 +115,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		dprintf(2, "L%u: can't pop an empty stack", line_number);
+		dprintf(2, "L%u: can't pop an empty stack\n", line_number);
 		_freelist(*stack);
 		exit(EXIT_FAILURE);
 	}
