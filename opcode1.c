@@ -7,7 +7,7 @@
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new;
+	stack_t *new, *tmp;
 	int i, j, number;
 
 	if (ready.token)
@@ -38,15 +38,13 @@ void _push(stack_t **stack, unsigned int line_number)
 		dprintf(2, "Error: malloc failed\n");
 		_freelist(new), _freelist(*stack), exit(EXIT_FAILURE);
 	}
-	else
-	{
-		new->n = number;
-		new->prev = NULL;
-		new->next = *stack;
-		if (*stack != NULL)
-			(*stack)->prev = new;
-		*stack = new;
-	}
+	new->n = number;
+	new->prev = NULL;
+	new->next = *stack;
+	tmp = *stack;
+	if (*stack != NULL)
+		tmp->prev = new;
+	*stack = new;
 }
 /**
  * _pall - opcode that print all stack
