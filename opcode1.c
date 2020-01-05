@@ -94,7 +94,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
- * _pop - removes the top element of the stack..
+ * _pop - removes the top element of the stack.
  * @stack: head of the stack
  * @line_number: where the opcode is located
  * Return: nothing
@@ -116,6 +116,29 @@ void _pop(stack_t **stack, unsigned int line_number)
 	else
 	{
 		dprintf(2, "L%u: can't pop an empty stack\n", line_number);
+		_freelist(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
+/**
+ * _swap - swaps the top two elements of the stack.
+ * @stack: head of the stack
+ * @line_number: where the opcode is located
+ * Return: nothing
+ */
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	int tmp;
+
+	if (*stack != NULL && (*stack)->next != NULL)
+	{
+		tmp = (*stack)->n;
+		(*stack)->n = (*stack)->next->n;
+		(*stack)->next->n = tmp;
+	}
+	else
+	{
+		dprintf(2, "L%u: can't swap, stack too short\n", line_number);
 		_freelist(*stack);
 		exit(EXIT_FAILURE);
 	}
