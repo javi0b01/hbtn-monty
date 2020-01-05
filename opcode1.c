@@ -43,10 +43,10 @@ void _push(stack_t **stack, unsigned int line_number)
 		new->n = number;
 		new->prev = NULL;
 		new->next = *stack;
+		if (*stack != NULL)
+			(*stack)->prev = new;
+		*stack = new;
 	}
-	if (*stack != NULL)
-		(*stack)->prev = new;
-	*stack = new;
 }
 /**
  * _pall - opcode that print all stack
