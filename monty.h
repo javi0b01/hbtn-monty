@@ -33,27 +33,27 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 /**
- * struct prepare_e - take the data, buffer and file to export
- * @data: Tokenized data
- * @buffer: buffer to getline
- * @file: file descriptor to open and close
+ * struct prepare_e - prepare for export
+ * @token: Tokenized data
+ * @line: buffer to getline
+ * @source: file descriptor to open and close
  *
  * Description: data, buffer and file to export
  * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct prepare_e
 {
-	char *data;
-	char *buffer;
-	FILE *file;
+	char *token;
+	char *line;
+	FILE *source;
 } prepare_t;
 /* global variable */
 extern prepare_t ready;
 /* prototypes */
-void _get_opcode(stack_t **stack, unsigned int line_number, char *name);
-void _freedom(stack_t *stack);
+void _freelist(stack_t *stack);
 void _split(char *buffer, stack_t **stack, unsigned int line_number);
-int _isdigit(int c);
+void _get_opcode(stack_t **stack, unsigned int line_number, char *name);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+int main(int argc, char **argv);
 #endif /* MONTY_H */

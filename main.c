@@ -2,16 +2,16 @@
 prepare_t ready = {NULL, NULL, NULL};
 /**
  * main - Entry point
- * @argc: lenght of arguments pass to prepare_e
- * @argv: arguments used by prepare_e
+ * @argc: lenght of arguments
+ * @argv: arguments
  * Return: Always
  */
 int main(int argc, char **argv)
 {
-	size_t length = 32;
-	ssize_t read;
 	stack_t *stack;
 	unsigned int line_number;
+	ssize_t obtained;
+	size_t length;
 
 	stack = NULL;
 	if (argc != 2)
@@ -19,18 +19,18 @@ int main(int argc, char **argv)
 		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	ready.file = fopen(argv[1], "r");
-	if (!ready.file)
+	ready.source = fopen(argv[1], "r");
+	if (!ready.source)
 	{
 		dprintf(2, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&ready.buffer, &length, ready.file)) != EOF)
+	while ((obtained = getline(&ready.line, &length, ready.source)) != EOF)
 	{
 		line_number++;
-		_split(ready.buffer, &stack, line_number);
+		_split(ready.line, &stack, line_number);
 	}
-	_freedom(stack);
+	_freelist(stack);
 	exit(EXIT_SUCCESS);
 	return  (0);
 }

@@ -8,29 +8,44 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
+	int i, j, number;
 
-	if (_isdigit(line_number) == 1)
+	if (ready.token)
 	{
-		fprintf(stderr, "Error: L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		for (i = 0; ready.token[i] != '\0'; i++)
+		{
+			if (ready.token[i] > 47 && ready.token[i] < 58)
+				j = 0;
+			else
+				j = 1;
+		}
+		if (j == 0)
+			number = atoi(ready.token);
+		else
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			_freelist(*stack), exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "Error: L%u: usage: push integer\n", line_number);
+		_freelist(*stack), exit(EXIT_FAILURE);
 	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		free(new);
 		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		_freelist(new), _freelist(*stack), exit(EXIT_FAILURE);
 	}
 	else
 	{
-		new->n = line_number;
+		new->n = number;
 		new->prev = NULL;
 		new->next = *stack;
 	}
 	if (*stack != NULL)
-	{
 		(*stack)->prev = new;
-	}
 	*stack = new;
 }
 /**
