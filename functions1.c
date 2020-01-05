@@ -66,7 +66,7 @@ void _get_opcode(stack_t **stack, unsigned int line_number, char *content)
 	}
 	if (!select[i].opcode)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, content);
+		dprintf(2, "L%u: unknown instruction %s\n", line_number, content);
 		_freelist((*stack));
 		exit(EXIT_FAILURE);
 	}

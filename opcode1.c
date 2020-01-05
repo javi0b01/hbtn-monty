@@ -23,19 +23,19 @@ void _push(stack_t **stack, unsigned int line_number)
 			number = atoi(ready.token);
 		else
 		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			dprintf(2, "L%u: usage: push integer\n", line_number);
 			_freelist(*stack), exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		fprintf(stderr, "Error: L%u: usage: push integer\n", line_number);
+		dprintf(2, "Error: L%u: usage: push integer\n", line_number);
 		_freelist(*stack), exit(EXIT_FAILURE);
 	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(2, "Error: malloc failed\n");
 		_freelist(new), _freelist(*stack), exit(EXIT_FAILURE);
 	}
 	else
