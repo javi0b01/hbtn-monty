@@ -55,5 +55,6 @@ void _split(char *buffer, stack_t **stack, unsigned int line_number);
 void _get_opcode(stack_t **stack, unsigned int line_number, char *name);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
 int main(int argc, char **argv);
 #endif /* MONTY_H */

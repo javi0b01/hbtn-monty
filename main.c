@@ -16,13 +16,13 @@ int main(int argc, char **argv)
 	stack = NULL;
 	if (argc != 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	ready.source = fopen(argv[1], "r");
 	if (!ready.source)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while ((obtained = getline(&ready.line, &length, ready.source)) != EOF)

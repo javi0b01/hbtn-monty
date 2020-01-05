@@ -51,6 +51,7 @@ void _get_opcode(stack_t **stack, unsigned int line_number, char *content)
 	instruction_t select[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 
@@ -67,7 +68,7 @@ void _get_opcode(stack_t **stack, unsigned int line_number, char *content)
 	if (!select[i].opcode)
 	{
 		dprintf(2, "L%u: unknown instruction %s\n", line_number, content);
-		_freelist((*stack));
+		_freelist(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
