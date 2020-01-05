@@ -93,3 +93,30 @@ void _pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * _pop - removes the top element of the stack..
+ * @stack: head of the stack
+ * @line_number: where the opcode is located
+ * Return: nothing
+ */
+void _pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (*stack != NULL)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+		if (*stack)
+		{
+			(*stack)->prev = NULL;
+		}
+	}
+	else
+	{
+		dprintf(2, "L%u: can't pop an empty stack", line_number);
+		_freelist(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
