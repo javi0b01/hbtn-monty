@@ -1,5 +1,5 @@
 #include "monty.h"
-prepare_t ready = {NULL, NULL, NULL};
+prepare_t ready;
 /**
  * main - Entry point
  * @argc: lenght of arguments
