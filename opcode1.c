@@ -24,14 +24,17 @@ void _push(stack_t **stack, unsigned int line_number)
 		else
 		{
 			dprintf(2, "L%u: usage: push integer\n", line_number);
-			_freelist(*stack), exit(EXIT_FAILURE);
+			_freelist(*stack);
+			exit(EXIT_FAILURE);
 		}
 	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
-		_freelist(new), _freelist(*stack), exit(EXIT_FAILURE);
+		_freelist(new);
+		_freelist(*stack);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -57,7 +60,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 	tmp = *stack;
-	while (stack && tmp)
+	while (tmp)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
