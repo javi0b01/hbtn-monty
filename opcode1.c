@@ -7,7 +7,7 @@
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new, *tmp;
+	stack_t *new;
 	int i, j, number;
 
 	if (ready.token)
@@ -27,24 +27,23 @@ void _push(stack_t **stack, unsigned int line_number)
 			_freelist(*stack), exit(EXIT_FAILURE);
 		}
 	}
-	else
-	{
-		dprintf(2, "Error: L%u: usage: push integer\n", line_number);
-		_freelist(*stack), exit(EXIT_FAILURE);
-	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
 		_freelist(new), _freelist(*stack), exit(EXIT_FAILURE);
 	}
-	new->n = number;
-	new->prev = NULL;
-	new->next = *stack;
-	tmp = *stack;
-	if (*stack != NULL)
-		tmp->prev = new;
-	*stack = new;
+	else
+	{
+		new->n = number;
+		new->prev = NULL;
+		new->next = *stack;
+		if (*stack != NULL)
+		{
+			(*stack)->prev = new;
+		}
+		*stack = new;
+	}
 }
 /**
  * _pall - opcode that print all stack
@@ -54,9 +53,10 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
+	stack_t *tmp;
 
 	(void)line_number;
+	tmp = *stack;
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
