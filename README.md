@@ -1,9 +1,6 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 Foundations - Low-level programming & Algorithm ― Data structures and Algorithms
 
-###### :copyright: **[Holberton School](https://www.holbertonschool.com/)**
-by _Julien Barbier_
-
 ## Learning Objectives
 * What do LIFO and FIFO mean
 * What is a stack, and when to use it
@@ -39,8 +36,6 @@ by _Julien Barbier_
 * [ ] 18. Multiplication
 * [ ] 19. Multiplication level up
 
-## Developer
-Javier Andrés Garzón Patarroyo
-- [website](https://tecnoayuda.co/)
-
-:man_technologist: :books: :computer: :globe_with_meridians:
+## Software Developer
+Built by [javi](https://github.com/javi0x00) :copyright: 2020  
+Found a bug or have an idea? [Contact me](https://www.linkedin.com/in/javi0x00/).
